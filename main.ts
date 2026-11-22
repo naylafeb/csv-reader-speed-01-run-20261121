@@ -16,8 +16,10 @@ const { run } = (await import(new URL('./solve.js', import.meta.url).href)) as {
 
 const INPUT_DIR = process.env.MAKEFUN_INPUT_DIR ?? '/input';
 const OUTPUT_DIR = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
+const CASES_NAME = 'cases.json';
+const ANSWERS_NAME = 'answers.json';
 
-const cases = JSON.parse(readFileSync(join(INPUT_DIR, 'cases.json'), 'utf8')) as { id: string; input: unknown }[];
+const cases = JSON.parse(readFileSync(join(INPUT_DIR, CASES_NAME), 'utf8')) as { id: string; input: unknown }[];
 const answers: unknown[] = [];
 for (const c of cases) answers.push(run(c.input));
-writeFileSync(join(OUTPUT_DIR, 'answers.json'), JSON.stringify(answers));
+writeFileSync(join(OUTPUT_DIR, ANSWERS_NAME), JSON.stringify(answers));
